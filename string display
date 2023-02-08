@@ -1,0 +1,15 @@
+.model small
+.DATA
+   MSG1 DB "HELLO WORLD$"
+.CODE
+START:
+    MOV AX,@DATA
+    MOV DS,AX
+    MOV DX,OFFSET MSG1
+    MOV AH,09H
+    INT 21H
+    MOV AH,4CH
+    MOV AL,OOH
+    INT 21H
+END START    
+    
