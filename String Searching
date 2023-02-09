@@ -1,0 +1,32 @@
+.model small
+.DATA
+    STRING DB
+    MSG1 DB "Found$"
+    MSG2 DB "Not Found$"
+    SE DB 33H
+    PRINT MACRO MSG
+    MOV AH,09H
+    LEA DX,MSG
+    INT 21H
+    INT 3
+    END M
+.CODE
+START:
+    MOV AX,@DATA
+    MOV DS,AX
+    MOV AL,SE
+    LEA SI,STRING1
+    MOV CX,04H
+ UP:MOV BL,[SI]
+    CMP AL,BL
+    JZ FO
+    INC SI
+    DEC CX
+    JNZ UP
+    PRINT MSG2
+    JMP END1
+ FO:
+    PRINT MSG1
+ END1:
+    INT 3
+END START    
